@@ -1,110 +1,168 @@
 /**
- * 嗨网解析 http://tv.138hi.com/
- * https://api.47ks.com/webcloud/?v=
- * http://www.vipjiexi.com/yun.php?url=
- * http://www.wmxz.wang/video.php?url=
- * 
- * 全民解析 http://www.qmaile.com/
- * http://jx.drgxj.com/?url=
- * 
- * 
- * 牛巴巴VIP解析 http://mv.688ing.com/
- * http://mv.688ing.com/player?url=
- * 
+ *
  */
 
+let common_parse = [
+    "http://jx.bwcxy.com/?v=",
+    "http://jx.wodym.cn/?url=",
+    "http://jx.rdhk.net/?v=",
+    "http://www.xyyh.xyz/zwjx/?url=",
+    "https://jx.fo97.cn/?url=",
+    "https://play.fo97.cn/?url=",
+    "http://yun.360dy.wang/jx.php?url=",
+    "https://www.kpezp.cn/jlexi.php?url=",
+    "https://jx.ivito.cn/?url=",
+    "http://www.xuanbo.top/yjx/index.php?url=",
+    "http://app.hoptc.cn/dyjx.php?url=",
+    "http://www.hoptc.cn/z8/?url=",
+    "https://api.tv920.com/vip/?url=",
+    "http://www.ka61b.cn/jx.php?url=",
+    "https://z1.m1907.cn/?jx=",
+    "http://www.xiashipin.net/?url=",
+    "http://www.guandianzhiku.com/v/s/?url=",
+    "http://nitian9.com/?url=",
+    "http://buchi.me/?v=",
+    "http://api.iifen.top/?v=",
+    "http://jx.xyplay.vip/?url=",
+    "http://api.lhh.la/vip/?url=",
+    "https://jx40.net/url=",
+    "http://api.51ds.shop/jx/?url=",
+    "http://api.sumingys.com/index.php?url=",
+    "https://vip.zlkkk.shop/2019/?url=",
+    "http://api.8bjx.cn/?url=",
+    "https://v.qianyicp.com/v.php?url=",
+    "https://mcncn.cn/?url=",
+    "https://jx.f41.cc/?url=",
+    "https://www.ckmov.vip/api.php?url=",
+    "http://k8aa.com/jx/index.php?url=",
+    "http://api.greatchina56.com/?url=",
+    "https://vip.bljiex.com/?v=",
+    "http://111ys.cn/111/?url=",
+    "http://jx.ejiafarm.com/x/jiexi.php?url=",
+    "http://cn.bjbanshan.cn/jx.php?url=",
+    "https://v.qianyicp.com/v.php?url=",
+    "http://www.xiashipin.net/?url=",
+    "http://apk.528kan.cn/index.php?url=",
+    "https://wq66.cn/?url=",
+    "https://jx.qppyy.com/jx/?url=",
+    "http://jx.618ge.com/?url=",
+    "http://jx.mw0.cc/?url=",
+    "http://69p.top/?url=",
+    "https://vip.bddjx.com/?url=",
+    "http://www.33tn.cn/?url=",
+    "http://jx.cesms.cn/?url=",
+    "https://jx.zhaodh.top/?v=",
+    "http://www.cqhwdnwx.com/jx/?url=",
+    "http://www.lexiangsj.xyz/?v=",
+    "http://jx.nxnns47.cf/?v=",
+    "http://jx.1ff1.cn/?url=",
+    "http://vip.116kan.com/?url=",
+    "http://jx.hongyishuzhai.com/index.php?url=",
+    "http://55jx.top/?url=",
+    "https://jx.000180.top/jx/?url=",
+    "http://qx.c7776.com/v3/?v=",
+    "https://jx.128sp.com/jxjx/?url=",
+    "http://19g.top/?url=",
+    "http://jx.6666txt.com/?url=",
+    "http://app.baiyug.cn:2019/vip/?url=",
+    "https://vip.bddjx.com/?url=",
+    "http://www.cuan.la/?url=",
+    "https://vod.265ks.com/vod/index.php?url=",
+    "http://ys.1969com.cn/?url=",
+    "https://jx.youqi.tw/v.php?url=",
+    "https://api.3456yun.com/?url=",
+    "http://jx.rdhk.net/?v=",
+    "http://py.ha12.xyz/sos/index.php?url=",
+    "https://jx.9ku.wang/9ku/?url=",
+    "http://jx.duzhiqiang.com/?url=",
+    "https://lany.lzure.kim/?v=",
+    "http://111jx.xyz/?url=",
+    "http://gege.ha123.club/gege1234/index.php?url=",
+    "http://fateg.xyz/?url=",
+    "http://api.huahuay.com/?url=",
+    "http://www.85105052.com/admin.php?url=",
+    "https://yun.odflv.com/?url=",
+    "http://www.82190555.com/video.php?url=",
+    "http://jx.598110.com/zuida.php?url=",
+    "http://jx.598110.com/duo/index.php?url=",
+    "http://jx.598110.com/index.php?url=",
+    "http://jx.zzit.cc/tv.php?url=",
+    "http://api.hlglwl.com/jx.php?url=",
+    "http://www.1717yun.com/jx/ty.php?url=",
+    "https://jx.128sp.com/jxjx/?url=",
+    "http://py.ha12.xyz/sos/index.php?url=",
+    "https://jx.hezeshi.net/ce/jlexi.php?url=",
+    "https://beaacc.com/api.php?url=",
+    "https://cdn.yangju.vip/k/?url=",
+    "https://www.myxin.top/jx/api/?url=",
+    "http://jx.cesms.cn/?url=",
+    "http://jx.618ge.com/?url=",
+    "http://jx.598110.com/?url=",
+    "http://jx.hanximeng.com/api.php?url=",
+    "http://vip.jlsprh.com/v/4.php?url=",
+    "http://jx.aeidu.cn/index.php?url=",
+    "https://z1.m1907.cn/?jx=",
+    "https://jqaaa.com/jx.php?url=",
+    "http://www.1717yun.com/jx/ty.php?url=",
+    "https://player.baodai.org/ipsign/player.php?v=",
+    "https://ejiafarm.com/jx.php?url=",
+    "https://000o.cc/jx/ty.php?url=",
+    "https://api.xiguaimg.com/odflv105/index.php?url=",
+    "https://030e.com/0302/?url=",
+    "http://app.baiyug.cn:2019/vip/?url=",
+    "http://api.pucms.com/jx/api/?url=",
+    "http://api.smq1.com/?url=",
+    "http://17kyun.com/api.php?url=",
+    "http://www.luckyblank.cn/wuxinjx/?url=",
+    "https://jx.618g.com/?url=",
+    "https://jiexi.071811.cc/jx.php?url=",
+    "http://jx.api.163ren.com/vod.php?url=",
+    "http://api.wlzhan.com/sudu/?url=",
+    "http://api.nepian.com/ckparse/?url=",
+    "http://beaacc.com/api.php?url=",
+    "http://api.bbbbbb.me/jx/?url=",
+    "http://api.51ckm.com/jx.php?url=",
+    "http://wwwhe44.92fz.cn/4.php?pass=1&amp;url=",
+    "http://www.3aym.cn/?url=",
+    "http://2gty.com/apiurl/yun.php?url=",
+    "http://api.sigujx.com/?url=",
+    "http://okjx.cc/?url=",
+    "http://api.bingdou.net/?url==",
+    "http://vip.wandhi.com/?v=",
+    "http://www.vipjiexi.com/yun.php?url=",
+    "http://www.wmxz.wang/video.php?url=",
+    "http://qtzr.net/s/?qt=",
+    "https://api.47ks.com/webcloud/?v=",
+    "https://api.47ks.com/webcloud/?v=",
+    "http://jx.du2.cc/?url=",
+    "http://jx.drgxj.com/?url=",
+    "http://jx.618ge.com/?url=",
+    "http://vip.jlsprh.com/?url=",
+    "http://jx.598110.com/?url=",
+    "http://mv.688ing.com/player?url=",
+    "http://jx.598110.com/index.php?url=",
+    "http://jx.71ki.com/qqvip.php?url=",
+    "http://v.72du.com/api/?url=",
+    "http://minevideo.sxl.me/qq.php?vid=",
+    "http://le.206dy.com/vip.php?url=",
+    "http://player.gakui.top/?url=",
+    "http://doudiapi.duapp.com/letv.php?url=",
 
-let urls = {
-    '嗨网解析': {
-        '⑩vip引擎系统【稳定通用】':'http://www.vipjiexi.com/yun.php?url=',
-        '⑨vip引擎系统【稳定通用】':'http://www.wmxz.wang/video.php?url=',
-        '⑧vip引擎系统【爱奇艺完美】':'http://player.gakui.top/?url=',
-        '⑦号vip引擎系统【搜狐、乐视】':'http://qtzr.net/s/?qt=',
-        '⑥号vip引擎系统【腾讯稳定】':'http://jx.71ki.com/qqvip.php?url=',
-        '⑤号vip引擎系统【腾讯超清】':'http://v.72du.com/api/?url=',
-        '④号vip引擎系统【腾讯推荐】':'http://minevideo.sxl.me/qq.php?vid=',
-        '③号vip引擎系统【乐视推荐】':'http://doudiapi.duapp.com/letv.php?url=',
-        '②号通用vip引擎系统【稳定通用】':'https://api.47ks.com/webcloud/?v=',
-        '①号通用vip引擎系统【稳定通用】':'https://api.47ks.com/webcloud/?v='
-    },
-    '全民解析': {
-        '⑤号通用vip引擎系统【稳定通用】':'http://jx.du2.cc/?url=',
-        '④号通用vip引擎系统【超级稳定通用】':'http://jx.drgxj.com/?url=',
-        '③号通用vip引擎系统【稳定通用】':'http://jx.618ge.com/?url=',
-        '②号通用vip引擎系统【稳定通用】':'http://vip.jlsprh.com/?url=',
-        '①号通用vip引擎系统【稳定通用】':'http://jx.598110.com/?url='
-    },
-    '牛巴巴VIP解析':'http://mv.688ing.com/player?url='
+];
+
+function createMenu(k, v) {
+    chrome.contextMenus.create({
+        id: k,
+        title: k,
+        contexts: ["link"],
+        onclick: function (params) {
+            chrome.tabs.create({ url: v + encodeURI(params.linkUrl) });
+        }
+    });
+
 }
 
-function createMenu(k, v){
-    chrome.contextMenus.create({
-        id: k + '1',
-        title: k,
-        contexts: ['link'],
-        onclick: function(params)
-        {
-            chrome.tabs.create({url: v + encodeURI(params.linkUrl)});
-        }
-    });
 
-    chrome.contextMenus.create({
-        id: k + '2',
-        title: k,
-        contexts: ['selection'],
-        onclick: function(params)
-        {
-            chrome.tabs.create({url: v + encodeURI(params.selectionText)});
-        }
-    });
-}
-
-function createParentMenu(k){
-    chrome.contextMenus.create({
-        id: k + '1',
-        title: k,
-        contexts: ['link']
-    });
-
-    chrome.contextMenus.create({
-        id: k + '2',
-        title: k,
-        contexts: ['selection']
-    });
-}
-
-function createChildrenMenu(pid, k, v){
-    chrome.contextMenus.create({
-        id: pid + '-'+ k + '1',
-        title: k,
-        contexts: ['link'],
-        parentId: pid + '1',
-        onclick: function(params)
-        {
-            chrome.tabs.create({url: v + encodeURI(params.linkUrl)});
-        }
-    });
-
-    chrome.contextMenus.create({
-        id: pid + '-'+ k + '2',
-        title: k,
-        parentId: pid + '2',
-        contexts: ['selection'],
-        onclick: function(params)
-        {
-            chrome.tabs.create({url: v + encodeURI(params.selectionText)});
-        }
-    });
-}
-
-for(let k in urls){
-    if(typeof(urls[k])=='string'){
-        createMenu(k, urls[k])
-    }else{
-        createParentMenu(k)
-        let d = urls[k]
-        for(let ck in d){
-            createChildrenMenu(k, ck, d[ck])
-        }
-    }
+for (let i=0;i<common_parse.length;i++) {
+    createMenu(String(i), common_parse[i]);
 }
