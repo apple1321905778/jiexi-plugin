@@ -1,0 +1,32 @@
+{
+	"manifest_version": 2,
+	"name": "视频解析",
+	"version": "1.0",
+	"description": "视频解析",
+	"author": "tangzuguo",
+	"icons":
+	{
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"browser_action": 
+	{
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"background":
+    {
+        "scripts": ["js/background.js"]
+    },
+    "permissions":
+    [
+        "contextMenus",
+        "tabs", 
+        "notifications", 
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "http://*/*", 
+        "https://*/*" 
+    ]
+}
